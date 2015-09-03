@@ -1,0 +1,112 @@
+#lang plai
+
+;Function Pow
+
+(define (pow m n)
+  (if (negative? m) (error"bad number m") [expt m n])
+  (and
+  (if (negative? n) (error"bad number n") [expt m n])
+  )
+  )
+(test (pow 2000 0) 1)
+(test (pow 2 3) 8)
+(test (pow 8 6) 262144)
+(test (pow 0 2000) 0)
+
+;Function average
+
+;;Function primes
+
+;(define (lista-hasta x)
+;   (if (= x 0)
+;      '()
+;      (cons x (lista-hasta (- x 1)))))
+;(define (filtra-divisores lista x)
+;   (cond
+;      ((null? lista) '())
+;      ((divisor? (car lista) x) (cons (car lista)
+;                                   (filtra-divisores (cdr lista) x)))
+;      (else (filtra-divisores (cdr lista) x))))
+;(define (divisores x)
+;   (filtra-divisores (lista-hasta x) x))
+;(define (primo? x)
+;   (=  2 
+;       (length (divisores x))))
+
+;;Function average
+
+
+(define (average lst)
+  (define (largo-lista lst)
+  (cond
+    [(empty? lst) 0]
+    [else (+ 1 (largo-lista (rest lst)))]
+    )
+  )
+(define (suma_eleml lst)
+  (if [null? lst] 0
+  [+ (first lst) (suma_eleml(rest lst))]
+  )
+  )
+  (if (= (largo-lista lst) 0) (error "list not allowed")
+      (/ (suma_eleml lst) (largo-lista lst))
+        ) 
+  )
+(test (average (list 5)) 5)
+(test (average '(3 2 6 2 1 7 2 1)) 3)
+(test (average '(10 7 13)) 10)
+
+;;Function zip
+
+
+  (define (zip lstX lstY)
+    (cond (= lstX '())
+        (null)
+        (else
+    (list ((first lstX) (first lstY)) 
+          ((first(rest(lstX))) first(rest(lstY)))
+          )
+    )
+    )
+    )
+    
+  
+
+;;Function mconcat
+
+(define (mconcat lstX lstY)
+   (cond [(empty? lstX) 
+     list]
+     [(cond 
+        [(empty? lstY) 
+        list]
+       [else (list* (lstX) (lstY))])]
+       )    
+  )
+
+;;Function mfilter
+
+(define (mfilter proc lst)
+  (if (ormap positive? (proc lst))
+      (map (integer? lst))
+      "not a valid list"))
+      
+;;Function any
+(define (any proc lst)
+  (if (ormap positive? (proc lst))
+      #t
+      #f))
+
+;;Function every
+(define (every? proc lst)
+  (if (andmap positive? (proc lst))
+      #t
+      #f))
+
+;;Function mpowerset
+
+(define (mpowerset lst)
+  (if null
+    [list '(())]
+                 (build-list length(lst) (values))))
+      
